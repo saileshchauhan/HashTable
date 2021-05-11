@@ -13,16 +13,27 @@ namespace HasTable
         {
             Console.WriteLine("Hash table"); 
             MyMapNode<string, string> hash = new MyMapNode<string, string>(18);
-            hash.Add("0", "To");
-            hash.Add("1", "be");
-            hash.Add("2", "or");
-            hash.Add("3", "not");
-            hash.Add("4", "to");
-            hash.Add("5", "be");
-            string word_At_5th_Key = hash.Get("5");
-            Console.WriteLine("5th index value: " + word_At_5th_Key);
-            string word_At_2nd_Key = hash.Get("2");
-            Console.WriteLine("2th index value: " + word_At_2nd_Key);
+            hash.Add("0", "paranoids");
+            hash.Add("1", "are");
+            hash.Add("2", "not");
+            hash.Add("3", "paranoids");
+            hash.Add("4", "because");
+            hash.Add("5", "they");
+            hash.Add("6", "are");
+            hash.Add("7", "paranoids");
+            hash.Add("8", "but");
+            hash.Add("9", "because");
+            hash.Add("10", "they");
+            hash.Add("11", "keep");
+            hash.Add("12", "putting");
+            hash.Add("13", "themselves");
+            hash.Add("14", "deliberately");
+            hash.Add("15", "into");
+            hash.Add("16", "paranoids");
+            hash.Add("17", "avoidable");
+            hash.Add("18", "situations");
+            hash.Display();
+            hash.Remove("17");
             Console.ReadKey();
         }
     }
