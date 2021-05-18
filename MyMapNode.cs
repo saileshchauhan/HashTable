@@ -10,6 +10,7 @@ namespace HasTable
     {
         private readonly int size;
         private readonly LinkedList<KeyValue<K, V>>[] items;
+        LinkedList<KeyValue<K, V>> linkedList;
         public MyMapNode(int size)
         {
             this.size = size;
@@ -19,7 +20,11 @@ namespace HasTable
         public void Add(K key, V value)
         {
             int position = GetArrayPosition(key); 
-            LinkedList<KeyValue<K, V>> linkedList = GetLinkedList(position);
+            linkedList = GetLinkedList(position);
+            if (Exists(key))
+            {
+                Remove(key);
+            }
             KeyValue<K, V> item = new KeyValue<K, V>() { Key = key, Value = value };
             linkedList.AddLast(item);
         }
@@ -74,19 +79,60 @@ namespace HasTable
             }
             return linkedList;
         }
-        public void Display()
+        public void  Display()
         {
-            LinkedList<KeyValue<K, V>> linkedList = new LinkedList<KeyValue<K, V>>();
-            foreach (KeyValue<K, V> item in linkedList)
+            foreach (var item in items)
             {
-                Console.WriteLine(item.Key+"\t\t"+item.Value);
+                if (item != null)
+                {
+                    foreach (KeyValue<K, V> keyValuePair in item)
+                    {
+                        Console.WriteLine(keyValuePair.Key + "\t\t" + keyValuePair.Value);
+                    }
+                }
+                
             }
         }
+        public bool  Exists(K word)
+        {
+            foreach (var subitem in items)
+            {
+                if (subitem != null)
+                {
+                    foreach (KeyValue<K, V> item in subitem)
+                    {
+                        if (item.Key.Equals(word))
+                        {
+                           return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        public void Word_Frequency(string sentences, MyMapNode<string, int> Dictionary)
+        {
+            string[] words = sentences.Split(' ');
+            foreach (var word in words)
+            {
+                if (Dictionary.Exists(word))
+                {
+                    Dictionary.Add(word, Dictionary.Get(word) + 1);
+                }
+                else
+                {
+                    Dictionary.Add(word,1);
+                }
+            }
+            
+        }
+
+        
+
     }
     
     public struct KeyValue<k, v>
     {
-
         public k Key { get; set; }
         public v Value { get; set; }
     }

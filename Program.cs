@@ -8,33 +8,24 @@ namespace HasTable
 {
     class Program
     {
-
+        
         static void Main(string[] args)
         {
-            Console.WriteLine("Hash table"); 
-            MyMapNode<string, string> hash = new MyMapNode<string, string>(18);
-            hash.Add("0", "paranoids");
-            hash.Add("1", "are");
-            hash.Add("2", "not");
-            hash.Add("3", "paranoids");
-            hash.Add("4", "because");
-            hash.Add("5", "they");
-            hash.Add("6", "are");
-            hash.Add("7", "paranoids");
-            hash.Add("8", "but");
-            hash.Add("9", "because");
-            hash.Add("10", "they");
-            hash.Add("11", "keep");
-            hash.Add("12", "putting");
-            hash.Add("13", "themselves");
-            hash.Add("14", "deliberately");
-            hash.Add("15", "into");
-            hash.Add("16", "paranoids");
-            hash.Add("17", "avoidable");
-            hash.Add("18", "situations");
-            hash.Display();
-            hash.Remove("17");
+            Console.WriteLine("Hash table");
+            MyMapNode<string, int> uc1_Dictionary = new MyMapNode<string, int>(3);
+            MyMapNode<string, int> uc2_Dictionary = new MyMapNode<string, int>(9);
+            uc1_Dictionary.Word_Frequency("to be or not to be", uc1_Dictionary);
+            uc1_Dictionary.Display();
+            //UC2
+            uc2_Dictionary.Word_Frequency("Paranoids are not paranoid because they are paranoid but" +
+                                          "because they keep putting themseleves deliberately into" +
+                                          " paranoid avoidable situations", uc2_Dictionary);
+            uc2_Dictionary.Display();
+            //UC3
+            uc2_Dictionary.Remove("avoidable");
+            uc2_Dictionary.Display();
             Console.ReadKey();
+
         }
     }
 }
